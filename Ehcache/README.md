@@ -1,4 +1,5 @@
 Ehcache
 ==========
+in Java language.
 
-Learn ehcache
+Sample code that shows how to use Ehcache.
