@@ -15,6 +15,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import java.net.InetSocketAddress;
 
 /**
+ * 服务端
  * 
  * @author xiajun.xj
  * @version $Id: EchoServer.java, v 0.1 2014年11月14日 下午3:55:50 xiajun.xj Exp $

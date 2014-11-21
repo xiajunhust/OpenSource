@@ -5,12 +5,12 @@
 package com.xiajun.test.nettytest.EchoServer;
 
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufUtil;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.util.CharsetUtil;
 
 /**
  * handler，主要逻辑处理。
@@ -33,8 +33,12 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         ByteBuf in = (ByteBuf) msg;
-        System.out.println("Server received: " + ByteBufUtil.hexDump(in));
+        System.out.println("Server received: "
+                           + /*ByteBufUtil.hexDump*/(in.toString(CharsetUtil.UTF_8)));
         ctx.write(in);
+
+        //释放资源【此处不能释放】
+        //ReferenceCountUtil.release(msg);
     }
 
     /**

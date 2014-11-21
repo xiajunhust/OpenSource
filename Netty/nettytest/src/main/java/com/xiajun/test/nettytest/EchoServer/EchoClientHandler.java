@@ -5,7 +5,6 @@
 package com.xiajun.test.nettytest.EchoServer;
 
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufUtil;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
@@ -13,10 +12,12 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
 
 /**
+ * 客户端handler
  * 
  * @author xiajun.xj
  * @version $Id: EchoClientHandler.java, v 0.1 2014年11月14日 下午4:40:45 xiajun.xj Exp $
  */
+//@Sharable注解表示这个CHannelHandler可以被添加到多个ChannelPipeline中。
 @Sharable
 public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
     /**
@@ -37,7 +38,8 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
     @Override
     public void channelRead0(ChannelHandlerContext ctx, ByteBuf in) {
         System.out.println("Client received: "
-                           + ByteBufUtil.hexDump(in.readBytes(in.readableBytes())));
+                           + /*ByteBufUtil.hexDump*/(in.readBytes(in.readableBytes())
+                               .toString(CharsetUtil.UTF_8)));
     }
 
     @Override
